@@ -1,10 +1,9 @@
-import Graph from "./Components/Graph";
+import Graph from "./Components/Graph.js";
 
 
 function App() {
   return (
     <div className="App">
-      Gale Shapely
       <Graph></Graph>
     </div>
   );

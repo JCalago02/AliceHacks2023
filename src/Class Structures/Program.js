@@ -11,7 +11,10 @@ export default class Program {
 
         this.seats = [];    
     }
-
+    // returns the seats array
+    getSeats() {
+        return this.seats;
+    }
     // returns whether applicant exists in the program's preferenceMap
     canAdd(applicant) {
         return this.preferenceMap.has(applicant);
@@ -52,6 +55,7 @@ export default class Program {
         this.seats.forEach((seat) => {
             strOut += seat + "-"
         })
+        console.log("Program " + this.id + " matches with: " + strOut);
     }
 
 }

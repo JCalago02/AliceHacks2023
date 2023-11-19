@@ -15,26 +15,26 @@ export default class GaleShapely {
         // reject anyone if needed
 
         // if not on the program's match list
-        // 
-        if (programToApply.canAdd(this.currentApplicant.id)) {
+        const currId = this.currentApplicant.id;
+        var rejectedId = undefined;
+        var wasRejected = true;
+        if (programToApply.canAdd(currId)) {
+            wasRejected = false;
             // set our match and remove from preference options list
             this.currentApplicant.matchedProgram = programToApply.id;
             this.currentApplicant.removeFirst(false);
-            console.log(this.currentApplicant.id + " matches with: " + programToApplyId);
             // insert into matched program
             programToApply.insertInPlace(this.currentApplicant.id);
             
             // remove least qualifed applicant if program is above capcity
             
-            const rejectedId = programToApply.validateList();
+            rejectedId = programToApply.validateList();
             if (rejectedId !== undefined) {
-                console.log(rejectedId + " is kicked out by " + programToApply.id)
                 const rejectedApplicant = this.findApplicant(rejectedId);
                 rejectedApplicant.rejectedList.push(rejectedApplicant.matchedProgram);
                 rejectedApplicant.matchedProgram = undefined;
             }
         } else {
-            console.log(this.currentApplicant.id + " was rejected by " + programToApply.id)
             this.currentApplicant.removeFirst(true);
         }
 
@@ -43,7 +43,7 @@ export default class GaleShapely {
         if (this.currentApplicant === undefined) {
             this.isStable = true;
         }
-        return [this.programList, this.applicantList];
+        return [currId, programToApplyId, rejectedId, wasRejected];
 
     }
 

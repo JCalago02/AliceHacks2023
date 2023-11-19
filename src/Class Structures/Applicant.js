@@ -14,18 +14,17 @@ export default class Applicant {
     }
 
     hasPossibleMatches() {
-        return this.preferenceList.length != 0;
+        return this.preferenceList.length !== 0;
     }
 
     shouldEvaluate() {
-        console.log(this.id);
         // console.log(this.matchedProgram === undefined);
         // console.log(this.preferenceList.length !== 0)
         return this.matchedProgram === undefined && this.preferenceList.length !== 0;
     }
 
     equals(otherApplicant) {
-        return this.id == otherApplicant.id;
+        return this.id === otherApplicant.id;
     }
 
     print() {
